@@ -12,14 +12,14 @@ django.setup()
 
 from lebedoo import models
 
-exceptions = ["Users"]
+exceptions = ["QrCodes"]
 insert_values = {}
 insert_items = []
 update_values = {}
 update_items = []
 exceptions_insert_fields = ['is_active', 'is_deleted', 'created_at', 'updated_at', 'deleted_at', 'created_date', 'updated_date']
 exceptions_update_fields = ['created_at', 'updated_at', 'deleted_at', 'deleted_at', 'created_date', 'updated_date']
-folder_name = 'rent'
+folder_name = 'lebedoo'
 
 tables = [(model, getattr(models, model)) for model in dir(models) if isclass(getattr(models, model))]
 
