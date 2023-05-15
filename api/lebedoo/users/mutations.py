@@ -23,7 +23,7 @@ class InsertUsers(graphene.Mutation):
     success = graphene.Boolean()
     users = graphene.Field(types.UsersType)
     errors = graphene.String()
-    otp = graphene.Int()
+    otp = graphene.String()
 
     class Arguments:
 
