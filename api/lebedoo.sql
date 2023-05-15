@@ -4,76 +4,6 @@ CREATE SCHEMA public;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO public;
 
-CREATE TABLE users
-(
-    id            VARCHAR(32) PRIMARY KEY,
-    username      VARCHAR(32) UNIQUE,
-    email         VARCHAR(255) UNIQUE NOT NULL,
-    first_name    VARCHAR(255)        NOT NULL,
-    last_name     VARCHAR(255)        NOT NULL,
-    privileges    JSONB,
-    is_admin      BOOLEAN,
-    is_freelancer BOOLEAN,
-    is_client     BOOLEAN,
-    is_deleted    BOOLEAN                  DEFAULT FALSE,
-    created_date  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_date  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
-CREATE TABLE user_roles
-(
-    id         SERIAL PRIMARY KEY,
-    name       VARCHAR(32),
-    is_deleted BOOLEAN DEFAULT FALSE
-);
-
-CREATE TABLE user_privileges
-(
-    id         SERIAL PRIMARY KEY,
-    name       VARCHAR(255),
-    is_active  BOOLEAN DEFAULT true,
-    is_deleted BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP WITH TIME ZONE,
-    updated_at TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE roles_privileges
-(
-    id           SERIAL PRIMARY KEY,
-    privilege_id INT REFERENCES user_privileges (id),
-    role_id      INT REFERENCES user_roles (id)
-);
-
-CREATE TABLE job_profession
-(
-    id         SERIAL PRIMARY KEY,
-    name       VARCHAR(255),
-    is_deleted BOOLEAN DEFAULT FALSE
-);
-
-CREATE TABLE job_function
-(
-    id         SERIAL PRIMARY KEY,
-    name       VARCHAR(255),
-    is_deleted BOOLEAN DEFAULT FALSE
-);
-
-CREATE TABLE company
-(
-    id           SERIAL PRIMARY KEY,
-    name         VARCHAR(255),
-    legal_form   VARCHAR(50),
-    logo         VARCHAR(255),
-    address      JSONB,
-    contact      JSONB,
-    area         JSONB,
-    added_by     VARCHAR REFERENCES users (id),
-    is_active    BOOLEAN,
-    is_deleted   BOOLEAN                  DEFAULT FALSE,
-    created_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_date TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
 CREATE TABLE continent
 (
     id           SERIAL PRIMARY KEY,
@@ -141,6 +71,81 @@ CREATE TABLE municipalities
     created_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_date TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+
+CREATE TABLE users
+(
+    id            VARCHAR(32) PRIMARY KEY,
+    username      VARCHAR(32) UNIQUE,
+    email         VARCHAR(255) UNIQUE,
+    phone_number  VARCHAR(32) UNIQUE,
+    country_code  INT REFERENCES country (id),
+    first_name    VARCHAR(255),
+    last_name     VARCHAR(255),
+    privileges    JSONB,
+    is_admin      BOOLEAN,
+    is_freelancer BOOLEAN,
+    is_client     BOOLEAN,
+    is_deleted    BOOLEAN                  DEFAULT FALSE,
+    created_date  TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_date  TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE TABLE user_roles
+(
+    id         SERIAL PRIMARY KEY,
+    name       VARCHAR(32),
+    is_deleted BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE user_privileges
+(
+    id         SERIAL PRIMARY KEY,
+    name       VARCHAR(255),
+    is_active  BOOLEAN DEFAULT true,
+    is_deleted BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE,
+    updated_at TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE roles_privileges
+(
+    id           SERIAL PRIMARY KEY,
+    privilege_id INT REFERENCES user_privileges (id),
+    role_id      INT REFERENCES user_roles (id)
+);
+
+CREATE TABLE job_profession
+(
+    id         SERIAL PRIMARY KEY,
+    name       VARCHAR(255),
+    is_deleted BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE job_function
+(
+    id         SERIAL PRIMARY KEY,
+    name       VARCHAR(255),
+    is_deleted BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE company
+(
+    id           SERIAL PRIMARY KEY,
+    name         VARCHAR(255),
+    legal_form   VARCHAR(50),
+    logo         VARCHAR(255),
+    address      JSONB,
+    contact      JSONB,
+    area         JSONB,
+    added_by     VARCHAR REFERENCES users (id),
+    is_active    BOOLEAN,
+    is_deleted   BOOLEAN                  DEFAULT FALSE,
+    created_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_date TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+
 
 CREATE TABLE contacts
 (
@@ -226,6 +231,21 @@ CREATE TABLE years
 
 
 ---------------- APPs tables
+
+/* *************************************** OTP CODES AUTH ******************************************/
+
+CREATE TABLE otp_codes
+(
+    id           SERIAL PRIMARY KEY,
+    otp_code     INT,
+    phone_number VARCHAR(32) UNIQUE,
+    country_code INT REFERENCES country (id),
+    expiry_time  INT,
+    is_expired   BOOLEAN                  DEFAULT false,
+    added_by     VARCHAR REFERENCES users (id),
+    created_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_date TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
 
 /* *************************************** PROPERTY RENTAL ******************************************/
 

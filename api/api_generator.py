@@ -12,7 +12,7 @@ django.setup()
 
 from lebedoo import models
 
-exceptions = ["QrCodes"]
+exceptions = ["OtpCodes"]
 insert_values = {}
 insert_items = []
 update_values = {}

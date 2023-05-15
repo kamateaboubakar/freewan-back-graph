@@ -249,6 +249,21 @@ class Municipalities(models.Model):
         db_table = 'municipalities'
 
 
+class OtpCodes(models.Model):
+    otp_code = models.IntegerField(blank=True, null=True)
+    phone_number = models.CharField(unique=True, max_length=32, blank=True, null=True)
+    country_code = models.ForeignKey(Country, models.DO_NOTHING, db_column='country_code', blank=True, null=True)
+    expiry_time = models.IntegerField(blank=True, null=True)
+    is_expired = models.BooleanField(blank=True, null=True)
+    added_by = models.ForeignKey('Users', models.DO_NOTHING, db_column='added_by', blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    updated_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'otp_codes'
+
+
 class PaymentMethods(models.Model):
     name = models.CharField(max_length=32, blank=True, null=True)
     abbreviated = models.CharField(max_length=2, blank=True, null=True)
@@ -481,9 +496,11 @@ class UserRoles(models.Model):
 class Users(models.Model):
     id = models.CharField(primary_key=True, max_length=32)
     username = models.CharField(unique=True, max_length=32, blank=True, null=True)
-    email = models.CharField(unique=True, max_length=255)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    email = models.CharField(unique=True, max_length=255, blank=True, null=True)
+    phone_number = models.CharField(unique=True, max_length=32, blank=True, null=True)
+    country_code = models.ForeignKey(Country, models.DO_NOTHING, db_column='country_code', blank=True, null=True)
+    first_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
     privileges = models.JSONField(blank=True, null=True)
     is_admin = models.BooleanField(blank=True, null=True)
     is_freelancer = models.BooleanField(blank=True, null=True)

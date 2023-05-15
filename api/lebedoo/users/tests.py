@@ -3,7 +3,7 @@
                 
 '''        
 mutation{
-        > createUsers(id:"", username:"ujjujihzzb", email:"xdsbrsnbpo", firstName:"zffbwhfeds", lastName:"qnydlkmqfh", privileges:"""{"role":"state"}""", isAdmin:false, isFreelancer:false, isClient:false)
+        > createUsers(id:"", username:"fdthwbkxsh", email:"szcqvowsso", phoneNumber:"qphcdazklr", countryCode:, firstName:"jcdkjylhvn", lastName:"eadkyxuvor", privileges:"""{"role":"state"}""", isAdmin:true, isFreelancer:true, isClient:false)
         
             {
                 success
@@ -13,6 +13,12 @@ mutation{
                                 id 
                                 username 
                                 email 
+                                phoneNumber 
+                            countryCode 
+                                {
+                                    id
+                                }
+                             
                                 firstName 
                                 lastName 
                                 privileges 
@@ -35,7 +41,7 @@ mutation{
 '''        
 mutation{
         
->    updateUsers(id:"", username:"tvdtuounwz", email:"atzotgbcxf", firstName:"orpxgnipjm", lastName:"zqrkfgzvaz", privileges:{"role":"state"}, isAdmin:false, isFreelancer:true, isClient:true, isDeleted:true)
+>    updateUsers(id:"", username:"bqrrdpxluw", email:"uoivvlwoym", phoneNumber:"jatszejjic", countryCode:, firstName:"vflxdsrvmo", lastName:"gystiasblv", privileges:{"role":"state"}, isAdmin:true, isFreelancer:true, isClient:true, isDeleted:false)
             {
                 success
                 errors
@@ -44,6 +50,12 @@ mutation{
                                 id 
                                 username 
                                 email 
+                                phoneNumber 
+                            countryCode 
+                                {
+>                                    id
+                                }
+                             
                                 firstName 
                                 lastName 
                                 privileges 
