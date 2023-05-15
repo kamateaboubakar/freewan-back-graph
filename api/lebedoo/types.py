@@ -37,4 +37,7 @@ from .user_roles.types import UserRolesType, UserRolesFilter
 from .users_details.types import UsersDetailsType, UsersDetailsFilter 
 from .years.types import YearsType, YearsFilter
 from .otp_codes.types import OtpCodesType, OtpCodesFilter
+from .users_security_questions.types import UsersSecurityQuestionsType, UsersSecurityQuestionsFilter
+from .security_questions.types import SecurityQuestionsType, SecurityQuestionsFilter
+
 

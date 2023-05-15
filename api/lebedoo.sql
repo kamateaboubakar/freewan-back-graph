@@ -232,6 +232,26 @@ CREATE TABLE years
 
 ---------------- APPs tables
 
+/* *************************************** SECURITY QUESTIONS ******************************************/
+
+CREATE TABLE security_questions
+(
+    id           SERIAL PRIMARY KEY,
+    name         VARCHAR(255),
+    created_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_date TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE TABLE users_security_questions
+(
+    id               SERIAL PRIMARY KEY,
+    questions_id     INT REFERENCES security_questions (id),
+    question_answers VARCHAR(255),
+    user_id          VARCHAR REFERENCES users (id),
+    created_date     TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_date     TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 /* *************************************** OTP CODES AUTH ******************************************/
 
 CREATE TABLE otp_codes

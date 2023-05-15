@@ -439,6 +439,16 @@ class SandVendors(models.Model):
         db_table = 'sand_vendors'
 
 
+class SecurityQuestions(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    updated_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'security_questions'
+
+
 class Status(models.Model):
     name = models.CharField(max_length=32, blank=True, null=True)
     abbreviated = models.CharField(max_length=2, blank=True, null=True)
@@ -535,6 +545,18 @@ class UsersDetails(models.Model):
     class Meta:
         managed = False
         db_table = 'users_details'
+
+
+class UsersSecurityQuestions(models.Model):
+    questions = models.ForeignKey(SecurityQuestions, models.DO_NOTHING, blank=True, null=True)
+    question_answers = models.CharField(max_length=255, blank=True, null=True)
+    user = models.ForeignKey(Users, models.DO_NOTHING, blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
+    updated_date = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'users_security_questions'
 
 
 class Years(models.Model):

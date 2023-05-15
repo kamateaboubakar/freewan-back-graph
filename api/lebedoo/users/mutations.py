@@ -91,7 +91,8 @@ class InsertUsers(graphene.Mutation):
             print('printing random number', random)
             _country_code = kwargs['country_code']
             _phone_number = kwargs['phone_number']
-            _otp_code = random
+            # _otp_code = random
+            _otp_code = "7539"
 
             kwargs['country_code'] = models.Country.objects.get(id=kwargs['country_code'])
             # kwargs['phone_number'] = models.Country.objects.get(id=kwargs['country_code'])
@@ -102,7 +103,7 @@ class InsertUsers(graphene.Mutation):
             otp_mutate = otp_m.mutate(root, info, phone_number=_phone_number, country_code=_country_code,
                                       otp_code=_otp_code, added_by=_added_by)
 
-            return InsertUsers(users=models.Users.objects.filter(**kwargs).all().latest('id'), success=True, otp=random)
+            return InsertUsers(users=models.Users.objects.filter(**kwargs).all().latest('id'), success=True, otp=_otp_code)
 
         except Exception as error:
             return InsertUsers(errors=error, success=False)

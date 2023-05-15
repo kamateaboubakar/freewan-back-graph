@@ -39,6 +39,9 @@ from .user_roles import queries as user_roles_queries, mutations as user_roles_m
 from .users_details import queries as users_details_queries, mutations as users_details_mutations
 from .years import queries as years_queries, mutations as years_mutations
 from .otp_codes import queries as otp_codes_queries, mutations as otp_codes_mutations
+from .users_security_questions import queries as users_security_questions_queries, \
+    mutations as users_security_questions_mutations
+from .security_questions import queries as security_questions_queries, mutations as security_questions_mutations
 
 
 class Query(
@@ -81,6 +84,8 @@ class Query(
     users_details_queries.UsersDetailsQuery,
     years_queries.YearsQuery,
     otp_codes_queries.OtpCodesQuery,
+    users_security_questions_queries.UsersSecurityQuestionsQuery,
+    security_questions_queries.SecurityQuestionsQuery,
     graphene.ObjectType
 ):
     pass
@@ -163,6 +168,10 @@ class Mutation(graphene.ObjectType):
     update_years = years_mutations.UpdateYears.Field()
     create_otp_codes = otp_codes_mutations.InsertOtpCodes.Field()
     update_otp_codes = otp_codes_mutations.UpdateOtpCodes.Field()
+    create_users_security_questions = users_security_questions_mutations.InsertUsersSecurityQuestions.Field()
+    update_users_security_questions = users_security_questions_mutations.UpdateUsersSecurityQuestions.Field()
+    create_security_questions = security_questions_mutations.InsertSecurityQuestions.Field()
+    update_security_questions = security_questions_mutations.UpdateSecurityQuestions.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
