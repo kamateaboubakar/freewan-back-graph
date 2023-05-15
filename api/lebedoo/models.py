@@ -250,7 +250,7 @@ class Municipalities(models.Model):
 
 
 class OtpCodes(models.Model):
-    otp_code = models.IntegerField(blank=True, null=True)
+    otp_code = models.CharField(max_length=4, blank=True, null=True)
     phone_number = models.CharField(unique=True, max_length=32, blank=True, null=True)
     country_code = models.ForeignKey(Country, models.DO_NOTHING, db_column='country_code', blank=True, null=True)
     expiry_time = models.IntegerField(blank=True, null=True)

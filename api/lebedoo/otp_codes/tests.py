@@ -3,7 +3,7 @@
                 
 '''        
 mutation{
-        > createOtpCodes(otpCode:23355, phoneNumber:"evpxyifwvy", countryCode:, expiryTime:25271, isExpired:true, addedBy:)
+        > createOtpCodes(otpCode:"hksajptkon", phoneNumber:"pezmgjwdnm", countryCode:"1", expiryTime:95601, isExpired:true, addedBy:"RsE7zcjdIdud9vVdL3")
         
             {
                 success
@@ -40,7 +40,7 @@ mutation{
 '''        
 mutation{
         
->    updateOtpCodes(id:"", otpCode:55692, phoneNumber:"fafxsmwrtu", countryCode:, expiryTime:14462, isExpired:false, addedBy:)
+>    updateOtpCodes(id:"", otpCode:"kyqvmffvhf", phoneNumber:"qcfhnltlcr", countryCode:, expiryTime:96698, isExpired:false, addedBy:)
             {
                 success
                 errors

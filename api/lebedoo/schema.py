@@ -4,7 +4,8 @@ from .property import queries as property_queries, mutations as property_mutatio
 from .beverage_rack import queries as beverage_rack_queries, mutations as beverage_rack_mutations
 from .beverage_rack_buyer import queries as beverage_rack_buyer_queries, mutations as beverage_rack_buyer_mutations
 from .beverage_rack_owner import queries as beverage_rack_owner_queries, mutations as beverage_rack_owner_mutations
-from .beverage_rack_payments import queries as beverage_rack_payments_queries, mutations as beverage_rack_payments_mutations
+from .beverage_rack_payments import queries as beverage_rack_payments_queries, \
+    mutations as beverage_rack_payments_mutations
 from .property_owners import queries as property_owners_queries, mutations as property_owners_mutations
 from .property_tenants import queries as property_tenants_queries, mutations as property_tenants_mutations
 from .qr_codes import queries as qr_codes_queries, mutations as qr_codes_mutations
@@ -14,29 +15,30 @@ from .sand_infos import queries as sand_infos_queries, mutations as sand_infos_m
 from .sand_trip_payments import queries as sand_trip_payments_queries, mutations as sand_trip_payments_mutations
 from .sand_trips import queries as sand_trips_queries, mutations as sand_trips_mutations
 from .sand_vendors import queries as sand_vendors_queries, mutations as sand_vendors_mutations
-from .company import queries as company_queries, mutations as company_mutations       
-from .address import queries as address_queries, mutations as address_mutations       
-from .cities import queries as cities_queries, mutations as cities_mutations       
-from .contacts import queries as contacts_queries, mutations as contacts_mutations       
-from .continent import queries as continent_queries, mutations as continent_mutations       
-from .country import queries as country_queries, mutations as country_mutations       
-from .currencies import queries as currencies_queries, mutations as currencies_mutations       
-from .department import queries as department_queries, mutations as department_mutations       
-from .gateways import queries as gateways_queries, mutations as gateways_mutations       
-from .job_function import queries as job_function_queries, mutations as job_function_mutations       
-from .job_profession import queries as job_profession_queries, mutations as job_profession_mutations 
-from .languages import queries as languages_queries, mutations as languages_mutations       
-from .months import queries as months_queries, mutations as months_mutations       
-from .municipalities import queries as municipalities_queries, mutations as municipalities_mutations       
-from .payment_methods import queries as payment_methods_queries, mutations as payment_methods_mutations 
-from .region import queries as region_queries, mutations as region_mutations       
-from .roles_privileges import queries as roles_privileges_queries, mutations as roles_privileges_mutations 
-from .status import queries as status_queries, mutations as status_mutations       
-from .transactions import queries as transactions_queries, mutations as transactions_mutations       
-from .user_privileges import queries as user_privileges_queries, mutations as user_privileges_mutations       
-from .user_roles import queries as user_roles_queries, mutations as user_roles_mutations       
-from .users_details import queries as users_details_queries, mutations as users_details_mutations       
-from .years import queries as years_queries, mutations as years_mutations   
+from .company import queries as company_queries, mutations as company_mutations
+from .address import queries as address_queries, mutations as address_mutations
+from .cities import queries as cities_queries, mutations as cities_mutations
+from .contacts import queries as contacts_queries, mutations as contacts_mutations
+from .continent import queries as continent_queries, mutations as continent_mutations
+from .country import queries as country_queries, mutations as country_mutations
+from .currencies import queries as currencies_queries, mutations as currencies_mutations
+from .department import queries as department_queries, mutations as department_mutations
+from .gateways import queries as gateways_queries, mutations as gateways_mutations
+from .job_function import queries as job_function_queries, mutations as job_function_mutations
+from .job_profession import queries as job_profession_queries, mutations as job_profession_mutations
+from .languages import queries as languages_queries, mutations as languages_mutations
+from .months import queries as months_queries, mutations as months_mutations
+from .municipalities import queries as municipalities_queries, mutations as municipalities_mutations
+from .payment_methods import queries as payment_methods_queries, mutations as payment_methods_mutations
+from .region import queries as region_queries, mutations as region_mutations
+from .roles_privileges import queries as roles_privileges_queries, mutations as roles_privileges_mutations
+from .status import queries as status_queries, mutations as status_mutations
+from .transactions import queries as transactions_queries, mutations as transactions_mutations
+from .user_privileges import queries as user_privileges_queries, mutations as user_privileges_mutations
+from .user_roles import queries as user_roles_queries, mutations as user_roles_mutations
+from .users_details import queries as users_details_queries, mutations as users_details_mutations
+from .years import queries as years_queries, mutations as years_mutations
+from .otp_codes import queries as otp_codes_queries, mutations as otp_codes_mutations
 
 
 class Query(
@@ -71,18 +73,17 @@ class Query(
     municipalities_queries.MunicipalitiesQuery,
     payment_methods_queries.PaymentMethodsQuery,
     region_queries.RegionQuery,
-    roles_privileges_queries.RolesPrivilegesQuery,      
+    roles_privileges_queries.RolesPrivilegesQuery,
     status_queries.StatusQuery,
     transactions_queries.TransactionsQuery,
     user_privileges_queries.UserPrivilegesQuery,
     user_roles_queries.UserRolesQuery,
     users_details_queries.UsersDetailsQuery,
-    years_queries.YearsQuery,    
+    years_queries.YearsQuery,
+    otp_codes_queries.OtpCodesQuery,
     graphene.ObjectType
 ):
     pass
-
-
 
 
 class Mutation(graphene.ObjectType):
@@ -133,13 +134,13 @@ class Mutation(graphene.ObjectType):
     create_job_function = job_function_mutations.InsertJobFunction.Field()
     update_job_function = job_function_mutations.UpdateJobFunction.Field()
     create_job_profession = job_profession_mutations.InsertJobProfession.Field()
-    update_job_profession = job_profession_mutations.UpdateJobProfession.Field()  
+    update_job_profession = job_profession_mutations.UpdateJobProfession.Field()
     create_languages = languages_mutations.InsertLanguages.Field()
-    update_languages = languages_mutations.UpdateLanguages.Field()  
+    update_languages = languages_mutations.UpdateLanguages.Field()
     create_months = months_mutations.InsertMonths.Field()
     update_months = months_mutations.UpdateMonths.Field()
     create_municipalities = municipalities_mutations.InsertMunicipalities.Field()
-    update_municipalities = municipalities_mutations.UpdateMunicipalities.Field()            
+    update_municipalities = municipalities_mutations.UpdateMunicipalities.Field()
     create_payment_methods = payment_methods_mutations.InsertPaymentMethods.Field()
     update_payment_methods = payment_methods_mutations.UpdatePaymentMethods.Field()
     create_region = region_mutations.InsertRegion.Field()
@@ -160,5 +161,8 @@ class Mutation(graphene.ObjectType):
     update_users_details = users_details_mutations.UpdateUsersDetails.Field()
     create_years = years_mutations.InsertYears.Field()
     update_years = years_mutations.UpdateYears.Field()
+    create_otp_codes = otp_codes_mutations.InsertOtpCodes.Field()
+    update_otp_codes = otp_codes_mutations.UpdateOtpCodes.Field()
+
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

@@ -35,4 +35,6 @@ from .transactions.types import TransactionsType, TransactionsFilter
 from .user_privileges.types import UserPrivilegesType, UserPrivilegesFilter 
 from .user_roles.types import UserRolesType, UserRolesFilter 
 from .users_details.types import UsersDetailsType, UsersDetailsFilter 
-from .years.types import YearsType, YearsFilter 
+from .years.types import YearsType, YearsFilter
+from .otp_codes.types import OtpCodesType, OtpCodesFilter
+

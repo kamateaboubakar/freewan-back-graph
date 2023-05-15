@@ -237,7 +237,7 @@ CREATE TABLE years
 CREATE TABLE otp_codes
 (
     id           SERIAL PRIMARY KEY,
-    otp_code     INT,
+    otp_code     VARCHAR(4),
     phone_number VARCHAR(32) UNIQUE,
     country_code INT REFERENCES country (id),
     expiry_time  INT,
