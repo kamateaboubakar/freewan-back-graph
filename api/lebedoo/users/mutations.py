@@ -23,6 +23,7 @@ class InsertUsers(graphene.Mutation):
     success = graphene.Boolean()
     users = graphene.Field(types.UsersType)
     errors = graphene.String()
+    otp = graphene.Int()
 
     class Arguments:
 
@@ -101,7 +102,7 @@ class InsertUsers(graphene.Mutation):
             otp_mutate = otp_m.mutate(root, info, phone_number=_phone_number, country_code=_country_code,
                                       otp_code=_otp_code, added_by=_added_by)
 
-            return InsertUsers(users=models.Users.objects.filter(**kwargs).all().latest('id'), success=True)
+            return InsertUsers(users=models.Users.objects.filter(**kwargs).all().latest('id'), success=True, otp=random)
 
         except Exception as error:
             return InsertUsers(errors=error, success=False)
