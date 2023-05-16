@@ -125,13 +125,13 @@ class UpdateUsers(graphene.Mutation):
 
         phone_number = graphene.String()
 
-        country_code = graphene.ID(required=True)
+        # country_code = graphene.ID(required=True)
 
         first_name = graphene.String()
 
         last_name = graphene.String()
 
-        privileges = graphene.JSONString(required=True)
+        # privileges = graphene.JSONString(required=True)
 
         is_admin = graphene.Boolean()
 
@@ -177,7 +177,7 @@ class UpdateUsers(graphene.Mutation):
 
             kwargs['id'] = models.Users.objects.get(id=kwargs['id']).id
 
-            kwargs['country_code'] = models.Country.objects.get(id=kwargs['country_code']).id
+            # kwargs['country_code'] = models.Country.objects.get(id=kwargs['country_code']).id
 
             models.Users.objects.filter(id=kwargs['id']).update(**kwargs)
             return UpdateUsers(users=models.Users.objects.filter(**kwargs).all().latest('id'), success=True)
